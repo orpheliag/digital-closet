@@ -3,9 +3,10 @@ import Link from "next/link";
 export default function LoginPage() {
 	return (
 		<div className="min-h-screen w-full bg-pink-300">
-			<Link href="/">
+			<Link href="/" className="underline">
 			Home
 			</Link>
+			<h1 className="pb-3 text-pink-700 text-2xl text-center font-bold">Log in </h1>
 			<form action="post" className="flex flex-col gap-4 p-10">
 				<input type="text" name="Pseudo" id="" className="p-2 rounded-lg bg-white text-black" />
 				<input type="password" name="Password" id="" className="p-2 rounded-lg  bg-white text-black" />
