@@ -42,7 +42,9 @@ export default function Home() {
 			</div>
 			<button className="bg-black text-white text-base rounded-full p-2 animate-bounce hover:bg-white hover:text-black">
 				Upload new clothes
-			</button>			
+			</button>
+			{/* test register page			 */}
+			<Link href="/register"> Sign up</Link>
 		</div>
 		<div className="absolute bottom-0 inset-x-0 pt-3 bg-pink-800 text-center text-amber-50">
 			Made in 2026 - Image par <a href="https://pixabay.com/fr/users/openclipart-vectors-30363/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=155838">OpenClipart-Vectors</a> de <a href="https://pixabay.com/fr//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=155838">Pixabay</a>
