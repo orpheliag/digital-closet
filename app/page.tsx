@@ -40,9 +40,9 @@ export default function Home() {
 					<img src="/mock-outfit.png" alt="outfit-3" width={200} height={200}  />
 				</div>
 			</div>
-			<button className="bg-black text-white text-base rounded-full p-2 animate-bounce hover:bg-white hover:text-black">
+			<Link href="/closet" className="bg-black text-white text-base rounded-full p-2 animate-bounce hover:bg-white hover:text-black">
 				Upload new clothes
-			</button>
+			</Link>
 			{/* test register page			 */}
 			<Link href="/register"> Sign up</Link>
 		</div>
