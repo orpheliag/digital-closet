@@ -7,6 +7,8 @@ export default function RegisterPage() {
 			</Link>
 			<h1 className="pb-3 text-pink-700 text-2xl text-center font-bold">Sign up </h1>
 			<form action="post" className="flex flex-col gap-4 p-10">
+				<label htmlFor="email">Email</label>
+				<input type="email" name="" id="email" />
 				<label htmlFor="pseudo"> Pseudo</label>
 				<input type="text" name="" id="pseudo" className="p-2 rounded-lg bg-white text-black" />
 				<label htmlFor="pseudo"> Password</label>
