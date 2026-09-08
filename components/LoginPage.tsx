@@ -22,41 +22,44 @@ export default function LoginPage() {
     }
   }
 	return (
-		<div className="min-h-screen w-full bg-pink-300">
-			<Link href="/" className="underline">
-			Home
-			</Link>
-			<h1 className="pb-3 text-pink-700 text-2xl text-center font-bold">Log in </h1>
-			<form onSubmit={handleSubmit} className="flex flex-col gap-4 p-10">
-				<label htmlFor="email"> Email</label>
+		<div className="app-shell flex min-h-screen items-center justify-center p-6">
+			<div className="w-full max-w-md">
+				<Link href="/" className="app-brand text-lg font-bold">Digital Closet</Link>
+				<form onSubmit={handleSubmit} className="app-panel mt-6 flex flex-col gap-5 p-7 sm:p-9">
+					<div>
+						<p className="text-sm font-bold uppercase tracking-[0.2em] text-pink-700">Welcome back</p>
+						<h1 className="mt-2 text-3xl font-bold text-pink-950">Log in</h1>
+					</div>
+					<label htmlFor="email" className="app-label">Email</label>
 				<input 
 					type="email"  
 					id="email" 
 					value={email}
 					onChange={(event) => setEmail(event.target.value)}
-					className="p-2 rounded-lg bg-white text-black"
+					className="app-input -mt-3"
 					required />
-				<label htmlFor="password"> Password</label>
+				<label htmlFor="password" className="app-label">Password</label>
 				<input 
 					type="password" 
 					id="password"
 					value={password}
 					onChange={(event) => setPassword(event.target.value)} 
-					className="p-2 rounded-lg  bg-white text-black"
+					className="app-input -mt-3"
 					required />
 				<button 
 					type="submit" 
-					className="bg-pink-700 text-white rounded-full p-2"
+					className="app-button-primary mt-2 w-full"
 				>
 					Login
 				</button>
 				{errorMessage && (
-          			<p className="text-sm text-red-600">{errorMessage}</p>
+          					<p className="app-message-error">{errorMessage}</p>
         		)}
-				<p className="text-sm text-pink-800">
+				<p className="text-sm text-pink-900/70">
 					No account yet? <Link href="/register" className="font-semibold underline">Sign up</Link>
 				</p>
-			</form>			
+				</form>
+			</div>
 		</div>
 
 	);

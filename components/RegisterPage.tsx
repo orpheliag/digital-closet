@@ -14,8 +14,12 @@ export default function RegisterPage() {
 
 		event.preventDefault();
     	setErrorMessage("");
+		if (password !== passwordConfirmation) {
+			setErrorMessage("Passwords do not match.");
+			return;
+		}
+
 		try {
-			password!== passwordConfirmation ? setErrorMessage('Password and Password Confirmation must be the same') :
 			await signUp({
 				email:email.trim(), 
 				password, 
@@ -31,57 +35,64 @@ export default function RegisterPage() {
 
 	}
 	return (
-		<div className="min-h-screen w-full bg-pink-300">
-			<Link href="/" className="underline">
-			Home
-			</Link>
-			<h1 className="pb-3 text-pink-700 text-2xl text-center font-bold">Sign up </h1>
-			<form onSubmit={handleSubmit} className="flex flex-col gap-4 p-10">
-				<label htmlFor="email">Email</label>
+		<div className="app-shell flex min-h-screen items-center justify-center p-6">
+			<div className="w-full max-w-md">
+				<Link href="/" className="app-brand text-lg font-bold">Digital Closet</Link>
+				<form onSubmit={handleSubmit} className="app-panel mt-6 flex flex-col gap-5 p-7 sm:p-9">
+					<div>
+						<p className="text-sm font-bold uppercase tracking-[0.2em] text-pink-700">Start your wardrobe</p>
+						<h1 className="mt-2 text-3xl font-bold text-pink-950">Create an account</h1>
+					</div>
+					<label htmlFor="email" className="app-label">Email</label>
 				<input 
 				type="email" 
 				id="email"
 				value={email}
 				onChange={(event) => setEmail(event.target.value)}
+				className="app-input -mt-3"
 				required
 				/>
-				<label htmlFor="pseudo"> Pseudo</label>
+				<label htmlFor="pseudo" className="app-label">Pseudo</label>
 				<input 
 				type="text"
 				id="pseudo"
 				value={username}
 				onChange={(event) => setUsername(event.target.value)} 
-				className="p-2 rounded-lg bg-white text-black"
+				className="app-input -mt-3"
 				required 
 				/>
-				<label htmlFor="password"> Password</label>
+				<label htmlFor="password" className="app-label">Password</label>
 				<input 
 				type="password" 
 				id="password"
 				value={password}
 				onChange={(event) => setPassword(event.target.value)} 
-				className="p-2 rounded-lg  bg-white text-black"
+				className="app-input -mt-3"
 				required 
 				/>
-				<label htmlFor="confirmPassword"></label>
+				<label htmlFor="confirmPassword" className="app-label">Confirm password</label>
 				<input 
 				type="password" 
 				id="confirmPassword"
 				value={passwordConfirmation}
 				onChange={(event) => setPasswordConfirmation(event.target.value)} 
-				className="p-2 rounded-lg  bg-white text-black"
+				className="app-input -mt-3"
 				required
 				/>
 				<button 
 					type="submit" 
-					className="bg-pink-700 text-white rounded-full p-2"
+					className="app-button-primary mt-2 w-full"
 				>
 					Register
 				</button>
 				{errorMessage && (
-          			<p className="text-sm text-red-600">{errorMessage}</p>
+          					<p className="app-message-error">{errorMessage}</p>
         		)}
-			</form>		
+					<p className="text-sm text-pink-900/70">
+						Already have an account? <Link href="/login" className="font-semibold underline">Log in</Link>
+					</p>
+				</form>
+			</div>
 		</div>
 
 	);

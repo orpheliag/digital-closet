@@ -81,65 +81,67 @@ export default function ClosetForm(){
 	};
 
 	if (isCheckingAuth) {
-		return <main className="flex min-h-screen items-center justify-center bg-pink-300">Checking your session...</main>;
+		return <main className="app-shell flex min-h-screen items-center justify-center text-pink-900">Checking your session...</main>;
 	}
 
 	return (
-		<div className="flex min-h-screen items-center justify-center bg-pink-300 p-6">
-			<h1 className="absolute top-5 text-pink-800 text-center text-2xl font-semibold">
-				Upload a piece of clothing
-			</h1>
-			<br />
-			<form onSubmit={handleSubmit} className="w-full max-w-md rounded-2xl border-pink-800 border-2 p-6">
-				<label htmlFor="clothePic">Select a picture:</label>
-				<br />
+		<div className="app-shell min-h-screen p-6 sm:p-10">
+			<div className="mx-auto max-w-2xl">
+				<div className="mb-8">
+					<p className="text-sm font-bold uppercase tracking-[0.2em] text-pink-700">Your wardrobe</p>
+					<h1 className="mt-2 text-4xl font-bold text-pink-950">Add a clothing piece</h1>
+					<p className="mt-2 max-w-lg text-pink-900/70">Give your closet a little more range. Add a photo, name it, and place it in a category.</p>
+				</div>
+				<form onSubmit={handleSubmit} className="app-panel p-6 sm:p-8">
+					<label htmlFor="clothePic" className="app-label">Picture</label>
 				<input 
 					type="file" 
 					accept="image/*" 
 					onChange={handleFileChange}
-					name="" id="clothePic"
+					name="clothePic" id="clothePic" className="mt-2 block w-full text-sm text-pink-900 file:mr-4 file:rounded-full file:border-0 file:bg-pink-100 file:px-4 file:py-2 file:font-semibold file:text-pink-800 hover:file:bg-pink-200"
 				/> 
-				<br />
 				{selectedImage && (
-					<div className="mb-4">
+					<div className="mt-5 overflow-hidden rounded-2xl bg-pink-50 p-3">
 						<img
 							src={selectedImage}
 							alt="Selected outfit"
-							className="h-48 w-base rounded-xl object-cover"
+							className="h-64 w-full rounded-xl object-cover"
 						/>
 						<button
 							type="button"
 							onClick={handleRemoveImage}
-							className="mt-2 rounded-full bg-red-500 px-3 py-1 text-sm text-white"
+							className="app-button-quiet mt-3 text-sm"
 						>
 						Remove picture
 						</button>
 					</div>
         		)}
-				<label htmlFor="clotheName"> Name </label> 
-				<br />
-				<input type="text" name="clotheName" id="clotheName" value={name} onChange={(event) => setName(event.target.value)} className="bg-white rounded-lg" />
-				<br />
-				<p>Category</p>
-				<div>
+				<label htmlFor="clotheName" className="app-label mt-6 block">Name</label>
+				<input type="text" name="clotheName" id="clotheName" value={name} onChange={(event) => setName(event.target.value)} className="app-input mt-2" />
+				<fieldset className="mt-6">
+					<legend className="app-label">Category</legend>
+					<div className="mt-3 grid gap-3 sm:grid-cols-3">
+						<label className="flex cursor-pointer items-center gap-2 rounded-xl border border-pink-200 bg-pink-50 p-3 text-sm font-semibold has-checked:border-pink-700 has-checked:bg-pink-100">
 					<input type="radio" name="category" id="top" value="top" checked={category === "top"} onChange={() => setCategory("top")} />
-					<label htmlFor="top">Top</label>					
-				</div>
-				<div>
+						<span>Top</span>
+						</label>
+						<label className="flex cursor-pointer items-center gap-2 rounded-xl border border-pink-200 bg-pink-50 p-3 text-sm font-semibold has-checked:border-pink-700 has-checked:bg-pink-100">
 					<input type="radio" name="category" id="bottom" value="bottom" checked={category === "bottom"} onChange={() => setCategory("bottom")} />
-					<label htmlFor="bottom"> Bottom </label>					
-				</div>
-				<div>
+						<span>Bottom</span>
+						</label>
+						<label className="flex cursor-pointer items-center gap-2 rounded-xl border border-pink-200 bg-pink-50 p-3 text-sm font-semibold has-checked:border-pink-700 has-checked:bg-pink-100">
 					<input type="radio" name="category" id="shoes" value="shoes" checked={category === "shoes"} onChange={() => setCategory("shoes")} />
-					<label htmlFor="shoes"> Shoes </label>					
+						<span>Shoes</span>
+						</label>
+					</div>
+				</fieldset>
+				<div className="mt-7 flex justify-end">
+					<input type="submit" value={isSubmitting ? "Uploading..." : "Upload piece"} disabled={isSubmitting} className="app-button-primary w-full sm:w-auto"/>
 				</div>
-				<div className="flex justify-center">
-					<input type="submit" value={isSubmitting ? "Uploading..." : "Upload"} disabled={isSubmitting} className="flex justify-center w-full max-w-xs rounded-full bg-pink-700 p-2 text-white disabled:opacity-50"/>
-
-				</div>
-				{message && <p className="mt-3 text-green-700">{message}</p>}
-				{errorMessage && <p className="mt-3 text-red-700">{errorMessage}</p>}
-			</form>
+				{message && <p className="app-message-success mt-4">{message}</p>}
+				{errorMessage && <p className="app-message-error mt-4">{errorMessage}</p>}
+				</form>
+			</div>
 		</div>
 	);
 }
