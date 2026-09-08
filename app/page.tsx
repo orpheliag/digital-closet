@@ -43,6 +43,9 @@ export default function Home() {
 			<Link href="/closet" className="bg-black text-white text-base rounded-full p-2 animate-bounce hover:bg-white hover:text-black">
 				Upload new clothes
 			</Link>
+			<Link href="/outfit" className="ml-3 rounded-full bg-pink-700 px-4 py-2 text-base text-white hover:bg-pink-900">
+				Generate an outfit
+			</Link>
 			{/* test register page			 */}
 			<Link href="/register"> Sign up</Link>
 		</div>

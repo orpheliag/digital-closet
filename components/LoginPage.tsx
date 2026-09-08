@@ -13,12 +13,12 @@ export default function LoginPage() {
     setErrorMessage("");
 
     try {
-      await signIn({ email, password });
-      router.push("/account")
+			await signIn({ email: email.trim(), password });
+			router.push("/account");
     } catch (error) {
-      setErrorMessage(
-        error instanceof Error ? error.message : "Unable to log in",
-      );
+			setErrorMessage(
+				error instanceof Error ? error.message : "Unable to log in",
+			);
     }
   }
 	return (
@@ -53,6 +53,9 @@ export default function LoginPage() {
 				{errorMessage && (
           			<p className="text-sm text-red-600">{errorMessage}</p>
         		)}
+				<p className="text-sm text-pink-800">
+					No account yet? <Link href="/register" className="font-semibold underline">Sign up</Link>
+				</p>
 			</form>			
 		</div>
 
