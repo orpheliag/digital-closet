@@ -5,13 +5,9 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getCurrentUserClothes } from "../lib/closet";
 import { saveOutfit } from "../lib/outfits";
+import { selectRandomOutfit } from "../lib/outfit-selection";
 import { getCurrentUser } from "../lib/user";
 import type { ClothingItem, OutfitSelection } from "../lib/types";
-
-function chooseRandomItem(items: ClothingItem[], category: ClothingItem["category"]) {
-  const matchingItems = items.filter((item) => item.category === category);
-  return matchingItems[Math.floor(Math.random() * matchingItems.length)];
-}
 
 export default function OutfitGeneratorPage() {
   const router = useRouter();
@@ -49,17 +45,15 @@ export default function OutfitGeneratorPage() {
     setMessage("");
     setErrorMessage("");
 
-    const top = chooseRandomItem(clothes, "top");
-    const bottom = chooseRandomItem(clothes, "bottom");
-    const shoes = chooseRandomItem(clothes, "shoes");
+    const outfit = selectRandomOutfit(clothes);
 
-    if (!top || !bottom || !shoes) {
+    if (!outfit) {
       setSelection(null);
       setErrorMessage("Add at least one top, one bottom, and one pair of shoes first.");
       return;
     }
 
-    setSelection({ top, bottom, shoes });
+    setSelection(outfit);
   }
 
   async function handleSaveOutfit() {
